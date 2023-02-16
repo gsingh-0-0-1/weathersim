@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import itertools
 
+SUN_TIME_THETA_RESOLUTION = 0.25
+
 class Matter:
 	def __init__(self):
 		self.heat = 0
@@ -81,7 +83,7 @@ class Sun:
 										abs(t.theta - self.time + 2 * np.pi) < np.pi / 2]
 		for t in target_ter:
 			t.illuminate(self.heat * np.cos(t.theta - self.time) * np.sin(t.phi))
-		self.time += 0.25
+		self.time += SUN_TIME_THETA_RESOLUTION
 		self.time = self.time % (2 * np.pi)
 
 #fig = plt.figure()
@@ -106,7 +108,7 @@ for phi in np.arange(0, np.pi + 0.001, PHI_STEP):
 	for theta in np.linspace(0, 2 * np.pi, npoints):
 		t = "land"
 		#generate terrain here
-		
+
 		#if (theta < np.pi / 8 or theta > 15 * np.pi / 8) and (3 * np.pi / 8 < phi < 5 * np.pi / 8):
 		#	t = "water"
 		#	print("water")
